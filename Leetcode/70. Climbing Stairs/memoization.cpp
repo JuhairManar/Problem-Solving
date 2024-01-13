@@ -1,31 +1,28 @@
 class Solution {
-
-    int max_rob(vector<int>&nums,vector<int>&dp,int i)
+public:
+    int a[46];
+    Solution()
     {
-        if(i<0)
+        for(int i=1;i<46;i++)
+        {
+            a[i]=-1;
+        }
+    }
+
+    int climbStairs(int n) {
+        if(n<0)
         {
             return 0;
         }
-        if(i==0)
+        if(n==0)
         {
-            return nums[0];
+            return 1;
         }
-        if(dp[i]!=-1)
+        if(a[n]==-1)
         {
-            return dp[i];
+          a[n]=climbStairs(n-1)+climbStairs(n-2);  
         }
-        dp[i]=max(nums[i]+max_rob(nums,dp,i-2),max_rob(nums,dp,i-1));
-        return dp[i];
+        return a[n];
     }
-public:
-    int rob(vector<int>& nums) {
-        //nums.push_back(0);
-        int n=nums.size(),i;
-        vector<int>dp(n,-1);
-        
-        return max_rob(nums,dp,n-1);
-    }
-};
 
-//2 7 9 3 1
-//2 7 9 20 1
+};
