@@ -1,0 +1,4 @@
+1. Calculate the time of arrival of every monster.
+2. Sort the arrival time.
+3. Start eliminating from sortest time and increament the time count by 1. after every elimination if the counting time is greater or equal to the next monster arrival time you failed . return the time.
+4. return total number
