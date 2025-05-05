@@ -8,58 +8,33 @@ using namespace std;
 #define pb push_back
 
 void solve(){
-    int i,a=0,n;
+    int i,a=0,n,mn=10000,mx=-1,mni,mxi;
     cin>>n;
-    vector<int>v(n),pre(n),suf(n),ans(n,-1);
-    cin>>v[0];
-    pre[0]=v[0];
-
-    
-    for(i=1;i<n;i++){
-        cin>>v[i];
-        pre[i]=__gcd(v[i],pre[i-1]);
-    }
-
-    suf[n-1]=v[n-1];
-
-    for(i=n-2;i>=0;i--){
-        suf[i]=__gcd(suf[i+1],v[i]);
-    }
-
+    vector<int>v(n),ans(n,-1);
     for(i=0;i<n;i++){
-        if((i-1>=0) && (i+1)<n){
-            if(v[i]!=__gcd(pre[i-1],suf[i+1])){
-                ans[i]=1;
-                a=1;
-                break;
-            }
+        cin>>v[i];
+        if(v[i]>mx){
+            mx=v[i];
+            mxi=i;
         }
-        else if(i+1>=n){
-            if(v[i]!=pre[i-1]){
-                ans[i]=1;
-                a=1;
-                break;
-            }
-        }
-        else {
-            if(v[i]!=suf[i+1]){
-                ans[i]=1;
-                a=1;
-                break;
-            }
+        if(v[i]<mn){
+            mn=v[i];
+            mni=i;
         }
     }
 
-    if(a){
-        cout<<"YES\n";
-        for(i=0;i<n;i++){
-            if(ans[i]!=1) cout<<2<<" ";
-            else cout<<1<<" ";
-        }
-        cout<<"\n";
-        return;
+    if(mn==mx){
+        cout<<"NO\n";
+        return ;
     }
-    cout<<"NO\n";
+    cout<<"YES\n";
+    ans[mxi]=1;
+    for(i=0;i<n;i++){
+        if(ans[i]==-1) cout<<"2 ";
+        else cout<<"1 ";
+    }
+    cout<<endl;
+    
 }
 
 int main()
